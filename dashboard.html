@@ -16,43 +16,130 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <div class="logo">
-        <img src="static/njire.svg" alt="NJIRE logo" class="w-24" />
-
-            <h2>AI</h2>
+            <div class="logo-icon">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 2L2 22h20L12 2z"
+                ></path>
+              </svg>
+            </div>
+            <h2>NJIRE AI</h2>
           </div>
         </div>
+
         <nav class="sidebar-nav" id="sidebarNav">
+          <div class="sidebar-nav-group">Navigation</div>
+
           <a
             href="#tab-dashboard"
             class="nav-item active"
             data-target="dashboard"
           >
-            <span class="icon">📊</span> Overview
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                ></path>
+              </svg>
+              <span>Dashboard</span>
+            </div>
           </a>
+
           <a href="#tab-knowledge" class="nav-item" data-target="knowledge">
-            <span class="icon">🧠</span> Knowledge Base
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+              <span>Knowledge Base</span>
+            </div>
           </a>
+
           <a href="#tab-inbox" class="nav-item" data-target="inbox">
-            <span class="icon">💬</span> Chat Inbox
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                ></path>
+              </svg>
+              <span>Chat Inbox</span>
+            </div>
           </a>
+
           <a href="#tab-leads" class="nav-item" data-target="leads">
-            <span class="icon">🎯</span> Leads
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              <span>Leads</span>
+            </div>
+            <span class="nav-badge">3</span>
           </a>
+
           <a href="#tab-settings" class="nav-item" data-target="settings">
-            <span class="icon">⚙️</span> Widget Settings
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              <span>Widget Settings</span>
+            </div>
           </a>
+
           <a href="#tab-billing" class="nav-item" data-target="billing">
-            <span class="icon">💳</span> Billing & Usage
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                ></path>
+              </svg>
+              <span>Billing & Usage</span>
+            </div>
+          </a>
+
+          <a href="#tab-support" class="nav-item" data-target="support">
+            <div class="nav-item-left">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>Support</span>
+            </div>
           </a>
         </nav>
-        <div class="sidebar-footer">
-          <div class="account-selector">
-            <label>Workspace</label>
-            <select id="accountIdSelect" disabled>
-              <option>Acme Corp</option>
-            </select>
-          </div>
-        </div>
       </aside>
 
       <!-- Main Content -->
@@ -60,15 +147,66 @@
         <!-- Top Header -->
         <header class="top-header">
           <div class="header-left">
-            <h1 id="pageTitle">Overview</h1>
-          </div>
-          <div class="header-right">
-            <div class="status-indicator">
+            <button class="header-toggle-btn">
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+            <div class="ai-status-wrapper">
               <span class="dot green"></span>
               <span class="status-text">AI is Online</span>
+              <label class="switch">
+                <input type="checkbox" checked />
+                <span class="slider"></span>
+              </label>
             </div>
+          </div>
+          <div class="header-right">
             <div class="credit-badge">
-              <span>2,400 Credits Left</span>
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              2,400 Credits
+            </div>
+            <button class="header-icon-btn">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                ></path>
+              </svg>
+              <span class="notification-dot"></span>
+            </button>
+            <div class="user-profile">
+              <div class="avatar">V</div>
+              <span class="user-name">Vantage User</span>
             </div>
           </div>
         </header>
@@ -77,6 +215,12 @@
         <div class="tab-content" id="tabContent">
           <!-- Tab: Dashboard -->
           <div class="tab-pane active" id="pane-dashboard">
+            <div class="page-header">
+              <div class="page-title">
+                <h1 id="pageTitle">Overview</h1>
+                <p>Here's what your AI has been up to.</p>
+              </div>
+            </div>
             <div class="kpi-grid">
               <div class="kpi-card">
                 <div class="kpi-title">Total Conversations</div>
@@ -97,7 +241,11 @@
             </div>
 
             <div class="recent-leads-section" style="margin-top: 40px">
-              <h3>Recent Leads</h3>
+              <h3
+                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px"
+              >
+                Recent Leads
+              </h3>
               <div class="table-container">
                 <table class="data-table">
                   <thead>
@@ -117,9 +265,25 @@
 
           <!-- Tab: Knowledge Base -->
           <div class="tab-pane" id="pane-knowledge">
-            <div class="tab-header-flex">
-              <p class="subtitle">Train your AI by adding pages and context.</p>
+            <div class="page-header">
+              <div class="page-title">
+                <h1>Knowledge Base</h1>
+                <p>Teach your AI about your website pages.</p>
+              </div>
               <button class="btn btn-primary" id="addKbBtn">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
                 Add New Page
               </button>
             </div>
@@ -159,59 +323,71 @@
               </div>
             </div>
 
-            <div class="table-container">
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Page Name</th>
-                    <th>Context</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="kbTableBody">
-                  <!-- populated via JS -->
-                </tbody>
-              </table>
+            <div class="card" style="padding: 0">
+              <div style="padding: 24px; border-bottom: 1px solid #e2e8f0">
+                <h3 style="font-size: 1.1rem; font-weight: 700">
+                  Page Registry
+                </h3>
+              </div>
+              <div
+                class="table-container"
+                style="border: none; border-radius: 0; box-shadow: none"
+              >
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 20%">Page Name</th>
+                      <th style="width: 15%">URL</th>
+                      <th style="width: 40%">Description</th>
+                      <th style="width: 10%">Status</th>
+                      <th style="width: 15%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="kbTableBody">
+                    <!-- populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Unanswered Questions Box -->
+            <div class="missing-questions-box">
+              <div class="missing-header">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  ></path>
+                </svg>
+                Questions the AI Couldn't Answer
+              </div>
+              <div class="missing-list" id="missingInfoList">
+                <!-- Populated via JS -->
+              </div>
             </div>
           </div>
 
           <!-- Tab: Inbox -->
           <div class="tab-pane" id="pane-inbox">
+            <div class="page-header">
+              <div class="page-title">
+                <h1>Chat Inbox</h1>
+                <p>Review customer conversations.</p>
+              </div>
+            </div>
             <div class="inbox-layout">
               <div class="inbox-list" id="inboxList">
                 <!-- Populated via JS -->
               </div>
               <div class="inbox-chat" id="inboxChat">
-                <div class="inbox-chat-empty">
+                <div style="margin: auto; color: #94a3b8; font-size: 1.1rem">
                   Select a conversation to view chat history.
-                </div>
-              </div>
-              <div
-                class="inbox-sidebar"
-                id="inboxMetadata"
-                style="display: none"
-              >
-                <div class="metadata-section">
-                  <h4>Visitor Info</h4>
-                  <div class="metadata-item">
-                    <span class="metadata-label">First Seen</span>
-                    <span class="metadata-value" id="metaFirstSeen">--</span>
-                  </div>
-                </div>
-                <div class="metadata-section">
-                  <h4>Lead Data</h4>
-                  <div class="metadata-item">
-                    <span class="metadata-label">Name</span>
-                    <span class="metadata-value" id="metaLeadName">--</span>
-                  </div>
-                  <div class="metadata-item">
-                    <span class="metadata-label">Phone</span>
-                    <span class="metadata-value" id="metaLeadPhone">--</span>
-                  </div>
-                  <div class="metadata-item">
-                    <span class="metadata-label">Intent Score</span>
-                    <span class="metadata-value" id="metaLeadScore">--</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -219,6 +395,12 @@
 
           <!-- Tab: Leads -->
           <div class="tab-pane" id="pane-leads">
+            <div class="page-header">
+              <div class="page-title">
+                <h1>Leads</h1>
+                <p>All captured contacts from the widget.</p>
+              </div>
+            </div>
             <div class="table-container">
               <table class="data-table">
                 <thead>
@@ -238,12 +420,20 @@
 
           <!-- Tab: Settings -->
           <div class="tab-pane" id="pane-settings">
+            <div class="page-header">
+              <div class="page-title">
+                <h1>Widget Settings</h1>
+                <p>Customize your AI sales agent.</p>
+              </div>
+            </div>
             <div
               style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px"
             >
               <div class="settings-form">
                 <div class="card" style="margin-bottom: 24px">
-                  <h3>Appearance & Branding</h3>
+                  <h3 style="font-weight: 700; margin-bottom: 16px">
+                    Appearance & Branding
+                  </h3>
                   <div class="form-group">
                     <label>Bot Name</label>
                     <input
@@ -300,9 +490,23 @@
                       display: flex;
                       align-items: center;
                       gap: 8px;
+                      margin-bottom: 8px;
                     "
                   >
-                    🚀 Installation Code
+                    <svg
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                      ></path>
+                    </svg>
+                    Installation Code
                   </h3>
                   <p
                     style="
@@ -326,42 +530,11 @@
                         font-size: 0.8rem;
                         border-radius: 8px;
                         border: 1px solid #cbd5e1;
+                        outline: none;
                       "
                     >
 <script src="https://njire.com/widget.js" data-account="demo_acc_123"></script></textarea
                     >
-                  </div>
-                </div>
-
-                <div
-                  class="card"
-                  style="
-                    min-height: 350px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    background: #f8fafc;
-                    border: 2px dashed #cbd5e1;
-                  "
-                >
-                  <h3 style="color: #94a3b8; margin-bottom: 8px">
-                    Widget Preview
-                  </h3>
-                  <div
-                    id="widgetPreviewContainer"
-                    style="
-                      margin-top: 20px;
-                      position: relative;
-                      width: 100%;
-                      height: 300px;
-                      background: white;
-                      border-radius: 12px;
-                      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-                      overflow: hidden;
-                    "
-                  >
-                    <!-- Injected via JS -->
                   </div>
                 </div>
               </div>
@@ -370,6 +543,12 @@
 
           <!-- Tab: Billing -->
           <div class="tab-pane" id="pane-billing">
+            <div class="page-header">
+              <div class="page-title">
+                <h1>Billing & Usage</h1>
+                <p>Manage your subscription and credits.</p>
+              </div>
+            </div>
             <div
               style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px"
             >
@@ -414,48 +593,10 @@
                       "
                     >
                       <div
-                        style="height: 100%; width: 52%; background: #3b82f6"
+                        style="height: 100%; width: 52%; background: #2563eb"
                       ></div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div>
-                <div
-                  class="card"
-                  style="background: #f8fafc; border: 1px solid #e2e8f0"
-                >
-                  <h3 style="margin-bottom: 16px">Top Up Credits</h3>
-                  <div style="display: flex; flex-direction: column; gap: 16px">
-                    <div
-                      style="
-                        border: 2px solid #cbd5e1;
-                        border-radius: 8px;
-                        padding: 16px;
-                        background: white;
-                        cursor: pointer;
-                      "
-                    >
-                      <div
-                        style="
-                          display: flex;
-                          justify-content: space-between;
-                          align-items: center;
-                        "
-                      >
-                        <span style="font-weight: 600">5,000 Credits</span>
-                        <span style="font-weight: 700; color: #2563eb"
-                          >$49.00</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    class="btn btn-primary"
-                    style="width: 100%; margin-top: 24px"
-                  >
-                    Purchase Add-on
-                  </button>
                 </div>
               </div>
             </div>
@@ -467,4 +608,3 @@
     <script src="dashboard.js"></script>
   </body>
 </html>
-
