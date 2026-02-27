@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NJIRE | Client Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <svg
+              class="logo-icon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              style="color: white; padding: 4px"
+            >
+              <path d="M12 2L2 22h20L12 2z" />
+            </svg>
+            <h2>NJIRE AI</h2>
+          </div>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+          <a
+            href="#tab-dashboard"
+            class="nav-item active"
+            data-target="dashboard"
+          >
+            <span class="icon">📊</span> Overview
+          </a>
+          <a href="#tab-knowledge" class="nav-item" data-target="knowledge">
+            <span class="icon">🧠</span> Knowledge Base
+          </a>
+          <a href="#tab-inbox" class="nav-item" data-target="inbox">
+            <span class="icon">💬</span> Chat Inbox
+          </a>
+          <a href="#tab-leads" class="nav-item" data-target="leads">
+            <span class="icon">🎯</span> Leads
+          </a>
+          <a href="#tab-settings" class="nav-item" data-target="settings">
+            <span class="icon">⚙️</span> Widget Settings
+          </a>
+          <a href="#tab-billing" class="nav-item" data-target="billing">
+            <span class="icon">💳</span> Billing & Usage
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="account-selector">
+            <label>Workspace</label>
+            <select id="accountIdSelect" disabled>
+              <option>Acme Corp</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Top Header -->
+        <header class="top-header">
+          <div class="header-left">
+            <h1 id="pageTitle">Overview</h1>
+          </div>
+          <div class="header-right">
+            <div class="status-indicator">
+              <span class="dot green"></span>
+              <span class="status-text">AI is Online</span>
+            </div>
+            <div class="credit-badge">
+              <span>2,400 Credits Left</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Tab Content Area -->
+        <div class="tab-content" id="tabContent">
+          <!-- Tab: Dashboard -->
+          <div class="tab-pane active" id="pane-dashboard">
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <div class="kpi-title">Total Conversations</div>
+                <div class="kpi-value" id="kpiConversations">--</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Questions Answered</div>
+                <div class="kpi-value" id="kpiAnswered">--</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Leads Captured</div>
+                <div class="kpi-value highlight" id="kpiLeads">--</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Time Saved (Hours)</div>
+                <div class="kpi-value" id="kpiTimeSaved">--</div>
+              </div>
+            </div>
+
+            <div class="recent-leads-section" style="margin-top: 40px">
+              <h3>Recent Leads</h3>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone / Email</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboardLeadsTableBody">
+                    <!-- populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Knowledge Base -->
+          <div class="tab-pane" id="pane-knowledge">
+            <div class="tab-header-flex">
+              <p class="subtitle">Train your AI by adding pages and context.</p>
+              <button class="btn btn-primary" id="addKbBtn">
+                Add New Page
+              </button>
+            </div>
+
+            <!-- Add KB Form -->
+            <div class="card form-card hidden" id="addKbForm">
+              <h3>Add Knowledge Entry</h3>
+              <div class="form-group">
+                <label>Title / Page Name</label>
+                <input
+                  type="text"
+                  id="kbTitle"
+                  placeholder="e.g. Pricing Page"
+                />
+              </div>
+              <div class="form-group">
+                <label>URL (Optional)</label>
+                <input
+                  type="text"
+                  id="kbUrl"
+                  placeholder="e.g. https://.../pricing"
+                />
+              </div>
+              <div class="form-group">
+                <label>Content / AI Context</label>
+                <textarea
+                  id="kbContent"
+                  rows="3"
+                  placeholder="Describe what the AI should know..."
+                ></textarea>
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-secondary" id="cancelKbBtn">
+                  Cancel
+                </button>
+                <button class="btn btn-primary" id="saveKbBtn">Train AI</button>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Page Name</th>
+                    <th>Context</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="kbTableBody">
+                  <!-- populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab: Inbox -->
+          <div class="tab-pane" id="pane-inbox">
+            <div class="inbox-layout">
+              <div class="inbox-list" id="inboxList">
+                <!-- Populated via JS -->
+              </div>
+              <div class="inbox-chat" id="inboxChat">
+                <div class="inbox-chat-empty">
+                  Select a conversation to view chat history.
+                </div>
+              </div>
+              <div
+                class="inbox-sidebar"
+                id="inboxMetadata"
+                style="display: none"
+              >
+                <div class="metadata-section">
+                  <h4>Visitor Info</h4>
+                  <div class="metadata-item">
+                    <span class="metadata-label">First Seen</span>
+                    <span class="metadata-value" id="metaFirstSeen">--</span>
+                  </div>
+                </div>
+                <div class="metadata-section">
+                  <h4>Lead Data</h4>
+                  <div class="metadata-item">
+                    <span class="metadata-label">Name</span>
+                    <span class="metadata-value" id="metaLeadName">--</span>
+                  </div>
+                  <div class="metadata-item">
+                    <span class="metadata-label">Phone</span>
+                    <span class="metadata-value" id="metaLeadPhone">--</span>
+                  </div>
+                  <div class="metadata-item">
+                    <span class="metadata-label">Intent Score</span>
+                    <span class="metadata-value" id="metaLeadScore">--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Leads -->
+          <div class="tab-pane" id="pane-leads">
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Contact Info</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                  <!-- populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab: Settings -->
+          <div class="tab-pane" id="pane-settings">
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px"
+            >
+              <div class="settings-form">
+                <div class="card" style="margin-bottom: 24px">
+                  <h3>Appearance & Branding</h3>
+                  <div class="form-group">
+                    <label>Bot Name</label>
+                    <input
+                      type="text"
+                      id="settingBotName"
+                      value="Sales Agent"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Welcome Message</label>
+                    <input
+                      type="text"
+                      id="settingWelcome"
+                      value="Hi! How can I help you today?"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Brand Color</label>
+                    <div style="display: flex; gap: 12px; align-items: center">
+                      <input
+                        type="color"
+                        id="settingColorPicker"
+                        value="#2563eb"
+                        style="width: 50px; height: 40px; padding: 2px"
+                      />
+                      <input
+                        type="text"
+                        id="settingColorHex"
+                        value="#2563eb"
+                        style="flex: 1"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-actions">
+                    <button class="btn btn-primary" id="saveSettingsBtn">
+                      Save Settings
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="settings-preview">
+                <div
+                  class="card"
+                  style="
+                    margin-bottom: 24px;
+                    background: #f0fdf4;
+                    border-color: #bbf7d0;
+                  "
+                >
+                  <h3
+                    style="
+                      color: #166534;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    🚀 Installation Code
+                  </h3>
+                  <p
+                    style="
+                      font-size: 0.9rem;
+                      color: #166534;
+                      margin-bottom: 12px;
+                    "
+                  >
+                    Copy and paste this snippet into the
+                    <code>&lt;head&gt;</code> of your website.
+                  </p>
+                  <div style="position: relative">
+                    <textarea
+                      id="embedCodeSnippet"
+                      readonly
+                      rows="2"
+                      style="
+                        width: 100%;
+                        padding: 12px;
+                        font-family: monospace;
+                        font-size: 0.8rem;
+                        border-radius: 8px;
+                        border: 1px solid #cbd5e1;
+                      "
+                    >
+<script src="https://njire.com/widget.js" data-account="demo_acc_123"></script></textarea
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="card"
+                  style="
+                    min-height: 350px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f8fafc;
+                    border: 2px dashed #cbd5e1;
+                  "
+                >
+                  <h3 style="color: #94a3b8; margin-bottom: 8px">
+                    Widget Preview
+                  </h3>
+                  <div
+                    id="widgetPreviewContainer"
+                    style="
+                      margin-top: 20px;
+                      position: relative;
+                      width: 100%;
+                      height: 300px;
+                      background: white;
+                      border-radius: 12px;
+                      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                      overflow: hidden;
+                    "
+                  >
+                    <!-- Injected via JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Billing -->
+          <div class="tab-pane" id="pane-billing">
+            <div
+              style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px"
+            >
+              <div>
+                <div
+                  class="kpi-grid"
+                  style="grid-template-columns: 1fr 1fr; margin-bottom: 24px"
+                >
+                  <div class="kpi-card">
+                    <div class="kpi-title">Current Plan</div>
+                    <div class="kpi-value" style="font-size: 1.8rem">
+                      Pro (Monthly)
+                    </div>
+                    <div
+                      style="
+                        color: #64748b;
+                        font-size: 0.85rem;
+                        margin-top: 8px;
+                      "
+                    >
+                      Renews next month
+                    </div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="kpi-title">Credits Used</div>
+                    <div
+                      class="kpi-value"
+                      style="font-size: 1.8rem; color: #2563eb"
+                    >
+                      2,600
+                      <span style="font-size: 1rem; color: #64748b"
+                        >/ 5,000</span
+                      >
+                    </div>
+                    <div
+                      style="
+                        height: 8px;
+                        background: #e2e8f0;
+                        border-radius: 4px;
+                        margin-top: 12px;
+                        overflow: hidden;
+                      "
+                    >
+                      <div
+                        style="height: 100%; width: 52%; background: #3b82f6"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="card"
+                  style="background: #f8fafc; border: 1px solid #e2e8f0"
+                >
+                  <h3 style="margin-bottom: 16px">Top Up Credits</h3>
+                  <div style="display: flex; flex-direction: column; gap: 16px">
+                    <div
+                      style="
+                        border: 2px solid #cbd5e1;
+                        border-radius: 8px;
+                        padding: 16px;
+                        background: white;
+                        cursor: pointer;
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                        "
+                      >
+                        <span style="font-weight: 600">5,000 Credits</span>
+                        <span style="font-weight: 700; color: #2563eb"
+                          >$49.00</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="btn btn-primary"
+                    style="width: 100%; margin-top: 24px"
+                  >
+                    Purchase Add-on
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>
