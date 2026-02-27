@@ -29,20 +29,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const mockKnowledge = [
     {
-      title: "Home Page",
-      context: "Main landing page explaining the AI widget.",
+      title: "Homepage",
+      url: "/",
+      description: "Main landing page with featured products and hero section",
       status: "Active",
+      statusColor: "green",
     },
     {
       title: "Pricing Page",
-      context: "Plans: Basic $29, Pro $79, Scale $199.",
+      url: "/pricing",
+      description:
+        "Contains delivery rates for Lagos/Abuja and nationwide shipping",
       status: "Active",
+      statusColor: "green",
     },
     {
-      title: "Return Policy",
-      context: "30 day return window for non-custom items.",
-      status: "Active",
+      title: "Product Catalog",
+      url: "/products",
+      description: "Full catalog with categories: watches, accessories, etc.",
+      status: "Training",
+      statusColor: "yellow",
     },
+    {
+      title: "Contact Page",
+      url: "/contact",
+      description: "Phone, email, WhatsApp, and office address",
+      status: "Error",
+      statusColor: "red",
+    },
+  ];
+
+  const mockMissingQuestions = [
+    { question: "What is your return policy?", count: 14 },
+    { question: "Do you offer warranty on watches?", count: 8 },
+    { question: "Can I pay on delivery?", count: 6 },
   ];
 
   const mockConversations = [
@@ -75,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Navigation Logic ---
   const navItems = document.querySelectorAll(".nav-item");
   const tabPanes = document.querySelectorAll(".tab-pane");
-  const pageTitle = document.getElementById("pageTitle");
 
   navItems.forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -85,16 +104,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       item.classList.add("active");
       const targetId = item.getAttribute("data-target");
+
+      // Handle support click (dummy action for now)
+      if (targetId === "support") {
+        alert("Redirecting to Support Portal...");
+        return;
+      }
+
       document.getElementById(`pane-${targetId}`).classList.add("active");
-      pageTitle.textContent = item.textContent
-        .replace(/[^a-zA-Z &]/g, "")
-        .trim();
 
       if (targetId === "dashboard") loadDashboard();
       if (targetId === "knowledge") loadKnowledgeBase();
       if (targetId === "inbox") loadInbox();
       if (targetId === "leads") loadLeads();
-      if (targetId === "settings") updateWidgetPreview();
     });
   });
 
@@ -111,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(
         (lead) => `
             <tr>
-                <td style="font-weight: 500;">${lead.name}</td>
+                <td style="font-weight: 600; color: #0f172a;">${lead.name}</td>
                 <td>${lead.phone}</td>
                 <td style="color:#64748b; font-size:0.85rem">${lead.date}</td>
             </tr>
@@ -126,10 +148,40 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(
         (item) => `
             <tr>
-                <td><strong>${item.title}</strong></td>
-                <td><div style="max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.context}</div></td>
-                <td><span class="badge active">${item.status}</span></td>
+                <td style="font-weight: 600; color: #0f172a;">${item.title}</td>
+                <td style="color: #64748b; font-size: 0.85rem;">${item.url}</td>
+                <td><div style="max-width:350px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: #475569;">${item.description}</div></td>
+                <td>
+                    <div class="status-badge">
+                        <span class="indicator ${item.statusColor}"></span>
+                        ${item.status}
+                    </div>
+                </td>
+                <td>
+                    <div class="action-icons">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        <svg class="delete" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </div>
+                </td>
             </tr>
+        `,
+      )
+      .join("");
+
+    const missingList = document.getElementById("missingInfoList");
+    missingList.innerHTML = mockMissingQuestions
+      .map(
+        (item) => `
+            <div class="missing-item">
+                <div class="missing-item-content">
+                    <strong>"${item.question}"</strong>
+                    <span>Asked ${item.count} times</span>
+                </div>
+                <button class="btn btn-outline" style="font-size:0.8rem; padding: 6px 12px; gap:4px;">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg> Add Page
+                </button>
+            </div>
         `,
       )
       .join("");
@@ -138,16 +190,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadLeads() {
     const tbody = document.getElementById("leadsTableBody");
     tbody.innerHTML = mockLeads
-      .map(
-        (lead) => `
+      .map((lead) => {
+        let activeClass = lead.status === "New" ? "active" : "";
+        return `
             <tr>
-                <td style="font-weight: 500;">${lead.name}</td>
+                <td style="font-weight: 600; color: #0f172a;">${lead.name}</td>
                 <td>${lead.phone}</td>
-                <td><span class="badge ${lead.status === "New" ? "active" : ""}">${lead.status}</span></td>
+                <td><span class="nav-badge" style="background:${lead.status === "New" ? "#dcfce7" : "#e2e8f0"}; color:${lead.status === "New" ? "#166534" : "#475569"}">${lead.status}</span></td>
                 <td style="color:#64748b; font-size:0.85rem">${lead.date}</td>
             </tr>
-        `,
-      )
+        `;
+      })
       .join("");
   }
 
@@ -157,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((cv) => {
         let tagHtml =
           cv.tag === "hot"
-            ? '<span class="tag hot">🔥 Hot</span> <span class="tag active">Lead</span>'
-            : '<span class="tag warm">⭐ Warm</span>';
+            ? '<span class="nav-badge" style="background:#fee2e2;color:#ef4444">Hot Lead</span>'
+            : '<span class="nav-badge" style="background:#fef3c7;color:#d97706">Warm</span>';
         return `
             <div class="convo-item" data-id="${cv.id}">
                 <div class="convo-header">
@@ -166,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span style="font-size:0.75rem; color:#64748b; font-weight:normal;">${cv.date}</span>
                 </div>
                 <div class="convo-preview">${cv.preview}</div>
-                <div class="convo-tags">${tagHtml}</div>
+                <div class="convo-tags" style="margin-top:8px">${tagHtml}</div>
             </div>`;
       })
       .join("");
@@ -183,20 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="chat-bubble user">Hey, I have a question about my website.</div>
                     <div class="chat-bubble bot">Hello! I'd be happy to help. What do you need to know?</div>
                     <div class="chat-bubble user">${mockConversations.find((c) => c.id == item.getAttribute("data-id")).preview}</div>
-                    <div class="chat-bubble bot">Great question. We can certainly handle that.</div>
+                    <div class="chat-bubble bot">Great question. We can certainly handle that right away. Let me get you the correct pricing link.</div>
                 `;
-
-        // Show metadata
-        const conv = mockConversations.find(
-          (c) => c.id == item.getAttribute("data-id"),
-        );
-        document.getElementById("inboxMetadata").style.display = "block";
-        document.getElementById("metaFirstSeen").textContent = conv.date;
-        document.getElementById("metaLeadName").textContent = conv.name;
-        document.getElementById("metaLeadScore").textContent =
-          conv.score + "/10";
-        document.getElementById("metaLeadPhone").textContent =
-          conv.name.includes("Unknown") ? "--" : "+234 *** ****";
       });
     });
   }
@@ -213,46 +254,12 @@ document.addEventListener("DOMContentLoaded", () => {
     addKbForm.classList.add("hidden"),
   );
 
-  document
-    .getElementById("settingColorPicker")
-    .addEventListener("input", (e) => {
-      document.getElementById("settingColorHex").value = e.target.value;
-      updateWidgetPreview();
-    });
-
-  document.getElementById("saveSettingsBtn").addEventListener("click", () => {
+  document.getElementById("saveSettingsBtn")?.addEventListener("click", () => {
     const btn = document.getElementById("saveSettingsBtn");
     btn.textContent = "Saved!";
-    updateWidgetPreview();
     setTimeout(() => (btn.textContent = "Save Settings"), 2000);
   });
 
-  function updateWidgetPreview() {
-    const container = document.getElementById("widgetPreviewContainer");
-    const botName = document.getElementById("settingBotName").value;
-    const brandColor = document.getElementById("settingColorHex").value;
-    const welcomeMessage = document.getElementById("settingWelcome").value;
-
-    container.innerHTML = `
-            <div style="position:absolute; bottom:20px; right:20px; width:300px; height:400px; background:white; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.15); display:flex; flex-direction:column; overflow:hidden; border:1px solid #e2e8f0; transform: scale(0.85); transform-origin: bottom right;">
-                <div style="background:${brandColor}; color:white; padding:16px; font-weight:600; font-size:16px; display:flex; align-items:center; gap:10px;">
-                    <div style="width:24px; height:24px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px;">🤖</div>
-                    ${botName}
-                </div>
-                <div style="flex:1; background:#f8fafc; padding:16px;">
-                    <div style="background:white; padding:12px; border-radius:12px; border-bottom-left-radius:2px; font-size:13px; color:#334155; box-shadow:0 1px 2px rgba(0,0,0,0.05); display:inline-block;">
-                        ${welcomeMessage}
-                    </div>
-                </div>
-                <div style="padding:12px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px;">
-                    <div style="flex:1; padding:8px 12px; border:1px solid #cbd5e1; border-radius:20px; color:#94a3b8; font-size:12px;">Type a message...</div>
-                    <div style="width:34px; height:34px; background:${brandColor}; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:12px;">➤</div>
-                </div>
-            </div>
-        `;
-  }
-
-  // Init
+  // Init Data
   loadDashboard();
-  updateWidgetPreview();
 });
